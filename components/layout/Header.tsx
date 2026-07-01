@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/lib/data";
+import { homeHref } from "@/lib/navigation";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -28,7 +31,7 @@ export function Header() {
       >
         <nav className="mx-auto flex max-w-[1240px] items-center justify-between px-[22px] py-[18px] text-ink md:px-10 md:py-[22px]">
           <Link
-            href="#top"
+            href={homeHref(pathname, "#top")}
             className="flex items-center gap-2 font-mono text-[13px] tracking-[0.04em] text-ink cursor-pointer"
           >
             <span className="flex h-[26px] w-[26px] items-center justify-center border border-line-strong font-display text-[14px] text-ink">
@@ -41,7 +44,7 @@ export function Header() {
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
-                  href={link.href}
+                  href={homeHref(pathname, link.href)}
                   className="group relative cursor-pointer px-0 py-1 transition-colors duration-[250ms] hover:text-ink"
                 >
                   {link.label}
@@ -55,7 +58,7 @@ export function Header() {
           </ul>
 
           <Link
-            href="#contact"
+            href={homeHref(pathname, "#contact")}
             className="hidden cursor-pointer border border-line-strong px-4 py-[9px] font-mono text-[12px] tracking-[0.04em] text-ink uppercase transition-[background,border-color] duration-[250ms] hover:border-accent hover:bg-accent-soft md:inline-block"
           >
             Start a project
@@ -120,7 +123,7 @@ export function Header() {
         {navLinks.map((link) => (
           <Link
             key={link.href}
-            href={link.href}
+            href={homeHref(pathname, link.href)}
             onClick={closeMenu}
             className="cursor-pointer border-b border-line py-2.5 font-display text-[clamp(32px,9vw,56px)] text-ink-dim active:text-accent"
           >

@@ -1,7 +1,7 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Wrap } from "@/components/layout/Wrap";
-import { workItems } from "@/lib/data";
+import { projects } from "@/lib/projects";
 import { WorkItem } from "./WorkItem";
 
 export function Work() {
@@ -19,8 +19,8 @@ export function Work() {
           </div>
         </div>
 
-        {workItems.map((item, index) => (
-          <WorkItem key={item.fileLabel} item={item} index={index} />
+        {projects.map((item, index) => (
+          <WorkItem key={item.slug} item={item} index={index} />
         ))}
       </Wrap>
     </section>

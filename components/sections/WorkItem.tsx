@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import type { WorkItem as WorkItemType } from "@/lib/data";
+import type { Project } from "@/lib/projects";
 import { WorkVisual } from "./WorkVisual";
 
 type WorkItemProps = {
-  item: WorkItemType;
+  item: Project;
   index: number;
 };
 
@@ -27,7 +27,7 @@ export function WorkItem({ item, index }: WorkItemProps) {
         <h3 className="mb-4 font-display text-[clamp(26px,3.4vw,38px)] font-normal text-ink">
           {item.title}
         </h3>
-        <p className="mb-[22px] max-w-[440px] leading-[1.5] text-ink-dim">{item.description}</p>
+        <p className="mb-[22px] max-w-[440px] leading-[1.5] text-ink-dim">{item.excerpt}</p>
         <div className="mb-6 flex flex-wrap gap-[10px]">
           {item.tags.map((tag) => (
             <span
@@ -39,7 +39,7 @@ export function WorkItem({ item, index }: WorkItemProps) {
           ))}
         </div>
         <Link
-          href={item.href}
+          href={`/work/${item.slug}`}
           className="group inline-flex cursor-pointer items-center gap-2 border-b border-line-strong pb-1 font-mono text-[13px] text-ink transition-[border-color,gap,color] duration-[250ms] hover:gap-3 hover:border-accent hover:text-accent"
         >
           View case study →
